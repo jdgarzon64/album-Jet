@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css?family=Handlee');
+.card {
+  background-color: transparent;
+  width: 300px;
+  min-height: 190px;
+  margin: 10px;
+}
+
+.flex-center-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* z-index: -14; */
+}
+
+.fullColorImage {
+  width: 100%;
+  height: 190px;
+  cursor: pointer;
+}
+
+.greyImage {
+  width: 100%;
+  height: 190px;
+  filter: grayscale(100%);
+  cursor: pointer;
+}
+
+.text {
+  width: 100%;
+  text-align: center;
+  size: 10px;
+  color: white;
+  font-family: 'Handlee', cursive;
+}
+
+.container-cards {
+  width: 100%;
+  height: 80vh;
+}
+
+.cont-cards {
+  width: 100%;
+  height: 70vh;
+  overflow-y: scroll;
+}
+
+.paginator {
+  background-color: transparent;
+  font-size: 18px;
+  color: white;
+}

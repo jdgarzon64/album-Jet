@@ -1,0 +1,14 @@
+.background {
+    position: absolute;
+    background-image:url('./../assets/imagenes/fondo.jpg');
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; 
+}
+
+.navbar{
+
+}

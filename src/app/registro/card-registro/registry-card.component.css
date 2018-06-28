@@ -1,0 +1,55 @@
+.profilePictureDiv {
+  width: 45%;
+  height: 200px;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  color: black;
+  cursor: pointer;
+}
+.labelImage{
+    cursor: pointer;
+    background-color: blanchedalmond;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+.profilePicture {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding-top: 24px;
+  cursor: pointer;
+}
+
+.buttonIn {
+  background-color: transparent;
+  width: 100%;
+  text-align: center;
+  font-style: italic bold;
+  font-size: 100%;
+  background: orangered;
+}
+
+.field {
+  color: gold;
+}
+
+form mat-form-field {
+  width: 100%;
+}
+
+.registryCard {
+  background-color: transparent;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  border-color: azure;
+  border-width: 1px;
+  border-style: solid;
+  margin-top: 60px;
+}
+
+.error {
+  color: navajowhite;
+}

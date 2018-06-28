@@ -1,0 +1,36 @@
+.title {
+    width: 100%;
+    font-style: italic bold;
+    font-size: 100%;
+    text-align: center;
+    color: orange;
+}
+
+.buttonIn {
+    width: 100%;
+    text-align: center;
+    font-style: italic bold;
+    font-size: 100%;
+    background: orangered;
+}
+
+.field {
+    color: gold;
+}
+
+form mat-form-field {
+    width: 100%;
+}
+
+.cardLogin {
+    background-color: transparent;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    height: 200px;
+    padding-top: 100px;
+    border-color: azure;
+    border-width: 1px;
+    border-style: solid;
+    margin-top: 60px;
+}

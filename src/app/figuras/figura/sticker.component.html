@@ -1,0 +1,17 @@
+<div class="container-cards">
+  <div class="cont-cards  flex-center-row">
+    <div class="card flex-center-row" *ngFor="let sticker of stickers">
+      <img mat-card-image [class]="sticker.classImage" [src]="sticker.pathImage" (click)="isCollectedImage(sticker)" [id]="sticker.ImageId">
+      <p class="text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad optio natus eligendi ipsa beatae nihil soluta possimus
+        assumenda aliquam architecto, dolores esse, exercitationem, dignissimos tenetur hic dolorem vitae reprehenderit?
+        Praesentium!
+      </p>
+      <p class="text">{{sticker.text}}</p>
+    </div>
+  </div>
+
+  <div>
+    <mat-paginator class="paginator" [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="pageEvent = $event; metodo($event.pageIndex)">
+    </mat-paginator>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<mat-card class="registryCard">
+  <form [formGroup]="registryForm" (ngSubmit)="onSubmit()">
+    <div class="profilePictureDiv">
+      <label class="labelImage" *ngIf="!hasImage">{{selectImageMessage}}
+        <input style="display: none" type="file" (change)="findImage($event)" #fileInput>
+      </label>
+      <img mat-card-image class="profilePicture" [src]=pathProfilePicture *ngIf="hasImage">
+    </div>
+    <mat-form-field class="field">
+      <input type="text" matInput placeholder="Name" name="name" [(ngModel)]="user.name" class="form-control" formControlName="name"
+        [errorStateMatcher]="matcher">
+      <mat-error class="error" *ngIf="registryForm.controls.name.hasError('required')">
+        please, complete all the fields
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="field">
+      <input type="text" matInput placeholder="LastName" name="lastName" [(ngModel)]="user.lastName" class="form-control" formControlName="lastName"
+        [errorStateMatcher]="matcher">
+      <mat-error class="error" *ngIf="registryForm.controls.lastName.hasError('required')">
+        please, complete all the fields
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="field">
+      <input type="text" matInput placeholder="User" name="user" [(ngModel)]="user.user" class="form-control" formControlName="user"
+        [errorStateMatcher]="matcher">
+      <mat-error class="error" *ngIf="registryForm.controls.user.hasError('required')">
+        please, complete all the fields
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="field">
+      <input type="password" matInput placeholder="Password" name="password" [(ngModel)]="user.password" class="form-control" formControlName="password"
+        [errorStateMatcher]="matcher">
+      <mat-error class="error" *ngIf="registryForm.controls.password.hasError('required')">
+        please, complete all the fields
+      </mat-error>
+
+      <mat-error class="error" *ngIf="registryForm.controls.password.validator.length < 8 ">
+        Wrong Password!
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <div>
+      <button mat-button type="submit" class="buttonIn" [disabled]="!registryForm.valid">Sign up</button>
+    </div>
+  </form>
+</mat-card>
