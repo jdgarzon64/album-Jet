@@ -1,4 +1,3 @@
-import { RegistryService } from '../../servicios/registry.service';
 import { Component, OnInit } from '@angular/core';
 
 

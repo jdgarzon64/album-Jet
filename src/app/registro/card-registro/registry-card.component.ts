@@ -1,9 +1,11 @@
 import { User } from '../../modelo/User';
 import { NgForm, FormGroup, FormGroupDirective } from '@angular/forms';
-import { RegistryService } from '../../servicios/registry.service';
+import { RegistryService } from '../../servicios/registry/registry.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { AngularFireDatabase } from 'angularfire2/database';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-registry-card',
@@ -19,7 +21,7 @@ export class RegistryCardComponent implements OnInit {
   hasImage: boolean;
   selectedFile: File;
 
-  constructor(private fb: FormBuilder, private registroService: RegistryService) {
+  constructor(private fb: FormBuilder, private registryService: RegistryService, private db: AngularFireDatabase) {
     this.buildForm();
     this.selectImageMessage = 'Click here and select imagen from computer';
     this.pathProfilePicture = '';
@@ -44,8 +46,18 @@ export class RegistryCardComponent implements OnInit {
     console.log(event);
     if (event.target.files[0]) {
       this.selectedFile = event.target.files[0];
+      this.hasImage = true;
+      console.log('tipo: ' + this.selectedFile.type);
+      const metaData = { 'contentType': this.selectedFile.type };
+      const storageRef: firebase.storage.Reference = firebase.storage().ref('profilePictures/' + this.selectedFile.name);
+      storageRef.put(this.selectedFile, metaData);
     }
   }
+
+  sendToUploadUser(user: User) {
+
+  }
+
 }
 
 
