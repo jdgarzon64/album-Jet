@@ -4,7 +4,7 @@ import { NgForm, FormGroup, FormGroupDirective } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 
 @Component({
@@ -21,7 +21,7 @@ export class RegistryCardComponent implements OnInit {
   hasImage: boolean;
   selectedFile: File;
 
-  constructor(private fb: FormBuilder, private userService: UserService, private db: AngularFireDatabase) {
+  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
     this.buildForm();
     this.selectImageMessage = 'Click here and select imagen from computer';
     this.pathProfilePicture = '';
@@ -40,16 +40,14 @@ export class RegistryCardComponent implements OnInit {
     });
   }
   onSubmit() {
-    // console.log(this.registryForm);
     this.sendToUploadUser(this.user);
+    this.router.navigateByUrl('/login');
   }
 
   findImage(event: any) {
-    console.log(event);
     if (event.target.files[0]) {
       this.selectedFile = event.target.files[0];
       this.hasImage = true;
-      // console.log('tipo: ' + this.selectedFile.type);
       const metaData = { 'contentType': this.selectedFile.type };
       const storageRef: firebase.storage.Reference = firebase.storage().ref('profilePictures/' + this.selectedFile.name);
       storageRef.put(this.selectedFile, metaData);
@@ -57,11 +55,9 @@ export class RegistryCardComponent implements OnInit {
   }
 
   sendToUploadUser(user: User) {
-    // console.log('hasImage' + this.hasImage);
     if (this.hasImage) {
       this.user.profilePicture = this.selectedFile.name;
       this.userService.uploadUserToFirebase(user);
-      console.log('envie al user');
     }
   }
 
