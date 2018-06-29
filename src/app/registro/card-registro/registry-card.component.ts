@@ -1,6 +1,6 @@
+import { UserService } from './../../servicios/user-services/user.service';
 import { User } from '../../modelo/User';
 import { NgForm, FormGroup, FormGroupDirective } from '@angular/forms';
-import { RegistryService } from '../../servicios/registry/registry.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
@@ -21,7 +21,7 @@ export class RegistryCardComponent implements OnInit {
   hasImage: boolean;
   selectedFile: File;
 
-  constructor(private fb: FormBuilder, private registryService: RegistryService, private db: AngularFireDatabase) {
+  constructor(private fb: FormBuilder, private userService: UserService, private db: AngularFireDatabase) {
     this.buildForm();
     this.selectImageMessage = 'Click here and select imagen from computer';
     this.pathProfilePicture = '';
@@ -29,6 +29,7 @@ export class RegistryCardComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.userService.getUsersFromFirebase();
   }
   buildForm() {
     this.registryForm = this.fb.group({
@@ -39,7 +40,8 @@ export class RegistryCardComponent implements OnInit {
     });
   }
   onSubmit() {
-    console.log(this.registryForm);
+    // console.log(this.registryForm);
+    this.sendToUploadUser(this.user);
   }
 
   findImage(event: any) {
@@ -47,7 +49,7 @@ export class RegistryCardComponent implements OnInit {
     if (event.target.files[0]) {
       this.selectedFile = event.target.files[0];
       this.hasImage = true;
-      console.log('tipo: ' + this.selectedFile.type);
+      // console.log('tipo: ' + this.selectedFile.type);
       const metaData = { 'contentType': this.selectedFile.type };
       const storageRef: firebase.storage.Reference = firebase.storage().ref('profilePictures/' + this.selectedFile.name);
       storageRef.put(this.selectedFile, metaData);
@@ -55,7 +57,12 @@ export class RegistryCardComponent implements OnInit {
   }
 
   sendToUploadUser(user: User) {
-
+    // console.log('hasImage' + this.hasImage);
+    if (this.hasImage) {
+      this.user.profilePicture = this.selectedFile.name;
+      this.userService.uploadUserToFirebase(user);
+      console.log('envie al user');
+    }
   }
 
 }
