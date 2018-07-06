@@ -7,6 +7,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 
+
 @Component({
   selector: 'app-registry-card',
   templateUrl: './registry-card.component.html',
@@ -16,7 +17,7 @@ export class RegistryCardComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
   user: User = new User();
   registryForm: FormGroup;
-  pathProfilePicture: string;
+  pathProfilePicture;
   selectImageMessage: string;
   hasImage: boolean;
   selectedFile: File;
@@ -24,7 +25,6 @@ export class RegistryCardComponent implements OnInit {
   constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
     this.buildForm();
     this.selectImageMessage = 'Click here and select imagen from computer';
-    this.pathProfilePicture = '';
     this.hasImage = false;
   }
 
@@ -51,6 +51,7 @@ export class RegistryCardComponent implements OnInit {
       const metaData = { 'contentType': this.selectedFile.type };
       const storageRef: firebase.storage.Reference = firebase.storage().ref('profilePictures/' + this.selectedFile.name);
       storageRef.put(this.selectedFile, metaData);
+      setTimeout(() => { this.pathProfilePicture = storageRef.getDownloadURL(); }, 3000);
     }
   }
 
@@ -58,6 +59,7 @@ export class RegistryCardComponent implements OnInit {
     if (this.hasImage) {
       this.user.profilePicture = this.selectedFile.name;
       this.userService.uploadUserToFirebase(user);
+      this.hasImage = false;
     }
   }
 

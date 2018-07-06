@@ -4,7 +4,7 @@
       <label class="labelImage" *ngIf="!hasImage">{{selectImageMessage}}
         <input style="display: none" type="file" (change)="findImage($event)" #fileInput>
       </label>
-      <img mat-card-image class="profilePicture" [src]=pathProfilePicture *ngIf="hasImage">
+      <img mat-card-image class="profilePicture" src="{{pathProfilePicture | async}}" *ngIf="hasImage">
     </div>
     <mat-form-field class="field">
       <input type="text" matInput placeholder="Name" name="name" [(ngModel)]="user.name" class="form-control" formControlName="name"

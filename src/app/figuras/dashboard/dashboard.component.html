@@ -1,13 +1,14 @@
-<div class="flex-center-row" >
+<div class="flex-center-row">
   <div class="dashboardLeft background">
-    <app-sticker [currentUser] = "currentUser"></app-sticker>
+    <!-- <app-sticker [currentUser] = "currentUser"></app-sticker>-->
+    <app-sticker></app-sticker>
   </div>
   <div class="dashboardRight">
     <div class="profileInf">
-      <app-information [currentUser] = "currentUser"></app-information>
+      <app-information></app-information>
     </div>
     <div class="profilePicture">
-      <app-picture [pathImage]="currentUser.profilePicture"></app-picture>
+      <app-picture></app-picture>
     </div>
   </div>
 </div>

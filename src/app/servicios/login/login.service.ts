@@ -11,8 +11,9 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-
+/*
   getUsers(): Observable<User[]> {
     return of (USERS);
   }
+  */
 }

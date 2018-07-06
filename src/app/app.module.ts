@@ -16,6 +16,7 @@ import { FiguraModule } from './figuras/sticker.module';
 import { UserService } from './servicios/user-services/user.service';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     AppRoutingModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    AngularFireStorageModule
   ],
   providers: [RegistryService, LoginService, PaginationService, UserService],
   bootstrap: [AppComponent]

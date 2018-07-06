@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../../modelo/User';
-import { UserService } from '../../servicios/user-services/user.service';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
@@ -10,33 +9,38 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class DashboardComponent implements OnInit {
   auxProfilePicture: string;
-  userId: number;
-  currentUser: User;
+  userId: string;
+  currentUser: User = new User();
   userSubscription$: Subscription;
   usersList: User[];
-  constructor(private userService: UserService) {
+  constructor() {
     // this.auxProfilePicture = '../../../assets/imagenes/lobo.jpg';
-    this.userId = Number(localStorage.getItem('userId'));
+  
   }
 
   ngOnInit() {
-    console.log('llamar user by id');
-    this.getUserById();
-    console.log('llamar all users');
-    console.log(this.usersList);
+    // this.userService.getUsersFromFirebase();
+    // this.userId = localStorage.getItem('userId');
+   // this.getUserByIds();
+    // this.currentUser = this.userService.getUserById(this.userId);
+    // this.currentUser.profilePicture = '../../../assets/imagenes/elefante.jpg';
+    //  console.log('current user dash', this.currentUser.name);
   }
 
-  getUserById() {
-    this.userSubscription$ = this.userService.getUserById(this.userId).subscribe((result: User) => {
-      this.currentUser = result;
-    });
-  }
+  // getUserByIds() {
+  //   this.userService.getUserById(this.userId).subscribe((result: User) => {
+  //     console.log('iiiiiiiiiiiiiiiiiii',result);
+  //     this.currentUser = result;
+  //   });
+  // }
 
-  getUsers() {
-    this.userSubscription$ = this.userService
-      .getUsers()
-      .subscribe((result: User[]) => {
-        this.usersList = result;
-      });
-  }
+  /*
+   getUsers() {
+     this.userSubscription$ = this.userService
+       .getUsersFromFirebase()
+       .subscribe((result: User[]) => {
+         this.usersList = result;
+       });
+   }
+   */
 }

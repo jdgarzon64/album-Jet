@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { User } from '../../../modelo/User';
 
 @Component({
   selector: 'app-information',
@@ -7,11 +6,14 @@ import { User } from '../../../modelo/User';
   styleUrls: ['./information.component.css']
 })
 export class InformationComponent implements OnInit {
-  @Input() currentUser: User;
+  user: string;
+  name: string;
 
   constructor() { }
 
   ngOnInit() {
+    this.name = localStorage.getItem('userName');
+    this.user = localStorage.getItem('user');
   }
 
 }

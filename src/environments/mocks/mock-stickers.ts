@@ -30,5 +30,5 @@ export const STICKERS: Sticker[] = [
     { imageId: 27, classImage: 'greyImage', pathImage: '../../assets/imagenes/zorro.jpg', text: '27', collected: false },
     { imageId: 28, classImage: 'greyImage', pathImage: '../../assets/imagenes/leon.jpg', text: '28', collected: false },
     { imageId: 29, classImage: 'greyImage', pathImage: '../../assets/imagenes/rana.jpg', text: '29', collected: false },
-    { imageId: 30, classImage: 'fullColorImage', pathImage: '../../assets/imagenes/mono.jpg', text: '30', collected: true },
+    { imageId: 30, classImage: 'greyImage', pathImage: '../../assets/imagenes/mono.jpg', text: '30', collected: false },
 ];

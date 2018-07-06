@@ -1,7 +1,6 @@
 import { User } from '../../modelo/User';
-import { Observable } from 'rxjs/Observable';
 import { Component, OnInit, Input, Output } from '@angular/core';
-import { LoginService } from './../../servicios/login/login.service';
+import { UserService } from './../../servicios/user-services/user.service';
 import { NgForm, FormGroup, FormGroupDirective } from '@angular/forms';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
@@ -16,19 +15,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./card-login.component.css']
 })
 export class CardLoginComponent implements OnInit {
-  @Output() user: User = new User();
-
+  user: User = new User();
   matcher = new MyErrorStateMatcher();
   logInForm: FormGroup;
   usersList: User[];
   userSubscription$: Subscription;
 
   constructor(private fb: FormBuilder,
-    private loginService: LoginService,
+    private userService: UserService,
     private router: Router) {
     this.buildForm();
-
-
   }
   buildForm() {
     this.logInForm = this.fb.group({
@@ -37,44 +33,33 @@ export class CardLoginComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    this.getUsers();
+    this.userService.getUsersFromFirebase().subscribe((list: User[]) => {
+      this.usersList = list;
+    });
   }
   onSubmit() {
-    if (this.userValid()) {
-      console.log('entra');
-      this.router.navigateByUrl('/main');
+    if (this.isUserValid(this.user)) {
+      this.router.navigate(['/main']);
     } else {
       console.log('no entra');
     }
   }
 
-  userValid() {
-    const userOK = this.usersList.filter(
-      (user: User) => this.user.password === user.password && this.user.user === user.user
-    )[0];
+  isUserValid(localUser: User) {
+    const userOK: User = this.usersList.filter(
+      (user: User) => user.password === localUser.password && user.user === localUser.user)[0];
     if (!isNullOrUndefined(userOK)) {
-      localStorage.setItem('userId', userOK.userId + '');
       localStorage.setItem('activeSession', 'true');
-      return true;
+      localStorage.setItem('userId', userOK.userId + '');
+      localStorage.setItem('userName', userOK.name);
+      localStorage.setItem('user', userOK.user);
+      localStorage.setItem('profilePicture', userOK.profilePicture);
+      return userOK;
     } else {
-      return false;
+      return null;
     }
-    /*
-    return !isNullOrUndefined(this.usersList.filter(
-      (user: User) => this.user.password === user.password && this.user.user === user.user
-    )[0]);
-*/
-  }
-
-  getUsers() {
-    this.userSubscription$ = this.loginService
-      .getUsers()
-      .subscribe((result: User[]) => {
-        this.usersList = result;
-      });
   }
 }
-
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const isSubmitted = form && form.submitted;

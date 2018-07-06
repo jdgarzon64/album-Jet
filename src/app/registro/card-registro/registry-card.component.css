@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Handlee');
 .profilePictureDiv {
   width: 45%;
   height: 200px;
@@ -7,13 +8,20 @@
   color: black;
   cursor: pointer;
 }
-.labelImage{
-    cursor: pointer;
-    background-color: blanchedalmond;
-    text-align: center;
-    display: flex;
-    align-items: center;
+
+.labelImage {
+  cursor: pointer;
+  background-color: transparent;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  font-family: 'Handlee', cursive;
+  font-weight: bold;
+  color: black;
+  font-size: 1.7em;
+  text-shadow: 1px 1px 2px black, 0 0 1em orangered, 0 0 0.2em orangered;
 }
+
 .profilePicture {
   width: 100%;
   height: 100%;
