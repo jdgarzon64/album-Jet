@@ -24,7 +24,7 @@ export class RegistryCardComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
     this.buildForm();
-    this.selectImageMessage = 'Click here and select imagen from computer';
+    this.selectImageMessage = 'Click here and select image from computer';
     this.hasImage = false;
   }
 
