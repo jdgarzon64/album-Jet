@@ -1,5 +1,5 @@
 import { Sticker } from './Sticker';
-import { STICKERS } from './../../environments/mocks/mock-stickers';
+import { STICKERS } from '../../environments/mocks/mock-stickers';
 export class User {
     public userId: string;
     public profilePicture: string;

@@ -1,4 +1,4 @@
-import { UserService } from './../../servicios/user-services/user.service';
+import { UserService } from '../../servicios/user-services/user.service';
 import { User } from '../../modelo/User';
 import { NgForm, FormGroup, FormGroupDirective } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';

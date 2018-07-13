@@ -5,12 +5,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login/login.component';
+import { StartPageComponent } from './start/start-page/start-page.component';
 
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
-  { path: 'inicio', children: [] },
-  { path: 'login', component: LoginComponent},
+  { path: '', component: StartPageComponent },
+  { path: 'inicio', component: StartPageComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistryComponent },
   { path: 'main', component: DashboardComponent }
 ];
@@ -21,6 +22,6 @@ const routes: Routes = [
     RouterModule.forRoot(routes)
   ],
   declarations: [],
-  exports: [ RouterModule ]
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }
