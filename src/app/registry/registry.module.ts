@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RegistryComponent } from './registry/registry.component';
+
 import { RegistryCardComponent } from './card-registry/registry-card.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
@@ -16,7 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatButtonModule,
     ReactiveFormsModule
   ],
-  declarations: [RegistryComponent, RegistryCardComponent],
-  exports: [RegistryComponent]
+  declarations: [RegistryCardComponent],
+  exports: [RegistryCardComponent]
 })
 export class RegistroModule { }

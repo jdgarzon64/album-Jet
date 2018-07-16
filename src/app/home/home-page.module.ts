@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StartPageComponent } from './start-page/start-page.component';
+import { HomePageComponent } from './home-page/home-page.component';
 import { SlideshowModule } from 'ng-simple-slideshow';
 
 @NgModule({
@@ -8,7 +8,7 @@ import { SlideshowModule } from 'ng-simple-slideshow';
     CommonModule,
     SlideshowModule
   ],
-  declarations: [StartPageComponent],
-  exports: [StartPageComponent]
+  declarations: [HomePageComponent],
+  exports: [HomePageComponent]
 })
-export class StartPageModule { }
+export class HomePageModule { }

@@ -1,4 +1,3 @@
-import { StartPageModule } from './start/start-page.module';
 import { environment } from '../environments/environment';
 import { LoginModule } from './log-in/log-in.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -9,15 +8,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './general/navbar/navbar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RegistroModule } from './registry/registry.module';
-import { RegistryService } from './services/registry/registry.service';
+import { RegistryService } from './registry/services/registry.service';
 import { HttpClientModule } from '@angular/common/http';
-import { LoginService } from './services/log-in/log-in.service';
-import { PaginationService } from './services/paginator/pagination.service';
 import { StickerModule } from './stickers/sticker.module';
-import { UserService } from './services/user-services/user.service';
+import { UserService } from './share/services/user-services/user.service';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireStorageModule } from 'angularfire2/storage';
+import { HomePageModule } from './home/home-page.module';
 
 
 @NgModule({
@@ -27,7 +25,7 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
   ],
   imports: [
     BrowserModule,
-    StartPageModule,
+    HomePageModule,
     MatToolbarModule,
     LoginModule,
     StickerModule,
@@ -39,7 +37,7 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
     AngularFireDatabaseModule,
     AngularFireStorageModule
   ],
-  providers: [RegistryService, LoginService, PaginationService, UserService],
+  providers: [RegistryService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

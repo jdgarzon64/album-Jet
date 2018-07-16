@@ -15,7 +15,7 @@ export class CollectedPopUpComponent {
   constructor(
     public dialogRef: MatDialogRef<CollectedPopUpComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
-    this.jetImage = '../../../assets/imagenes/jet-logo.png';
+    this.jetImage = '../../../assets/images/jet-logo.png';
     if (data.sticker.collected) {
       this.title = 'do you want to forget the sticker?';
       console.log(this.title);

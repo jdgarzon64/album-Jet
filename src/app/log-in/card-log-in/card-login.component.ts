@@ -1,12 +1,11 @@
 import { User } from '../../model/user';
-import { Component, OnInit, Input, Output } from '@angular/core';
-import { UserService } from '../../services/user-services/user.service';
-import { NgForm, FormGroup, FormGroupDirective } from '@angular/forms';
-import { FormBuilder, Validators, FormControl } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
+import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../share/services/user-services/user.service';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 import { isNullOrUndefined } from 'util';
 import { Router } from '@angular/router';
+import { ErrorState } from '../../share/error-matcher/error-state-matcher';
 
 
 @Component({
@@ -16,7 +15,7 @@ import { Router } from '@angular/router';
 })
 export class CardLoginComponent implements OnInit {
   user: User = new User();
-  matcher = new MyErrorStateMatcher();
+  matcher = new ErrorState();
   logInForm: FormGroup;
   usersList: User[];
   userSubscription$: Subscription;
@@ -58,11 +57,5 @@ export class CardLoginComponent implements OnInit {
     } else {
       return null;
     }
-  }
-}
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
   }
 }

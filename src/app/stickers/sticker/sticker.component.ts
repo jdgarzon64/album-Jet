@@ -1,12 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { PaginationService } from '../../services/paginator/pagination.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Sticker } from '../../model/sticker';
 import { PageEvent, MatDialogConfig } from '@angular/material';
 import { CollectedPopUpComponent } from '../collected-pop-up/collected-pop-up.component';
 import { MatDialog } from '@angular/material';
 import { User } from '../../model/user';
-import { UserService } from '../../services/user-services/user.service';
+import { UserService } from '../../share/services/user-services/user.service';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 
@@ -30,7 +29,7 @@ export class StickerComponent implements OnInit {
   IMAGE_UNCOLLECTED = 'greyImage';
   usersList: User[];
 
-  constructor(private paginationService: PaginationService, public dialog: MatDialog, private userService: UserService) {}
+  constructor(public dialog: MatDialog, private userService: UserService) {}
 
   ngOnInit(): void {
     this.userId = localStorage.getItem('userId');

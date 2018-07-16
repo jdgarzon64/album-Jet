@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { User } from '../../model/user';
+import { User } from '../../../model/user';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
 
@@ -11,14 +11,6 @@ export class UserService {
 
   constructor(private firebase: AngularFireDatabase) {
     this.getUsersFromFirebase();
-  }
-
-
-  uploadUserToFirebase(user: User) {
-    const userSaved = this.userListFirebase.push(user).key;
-    user.userId = userSaved;
-    this.userListFirebase.update(userSaved, user);
-
   }
 
   getUsersFromFirebase(): Observable<any> {

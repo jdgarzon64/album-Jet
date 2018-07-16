@@ -1,6 +1,6 @@
 .background {
     position: absolute;
-    background-image:url('./../assets/imagenes/fondo.jpg');
+    background-image:url('./../assets/images/fondo.jpg');
     height: 100%;
     width: 100%;
     z-index: -1;

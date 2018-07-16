@@ -1,17 +1,17 @@
 import { DashboardComponent } from './stickers/dashboard/dashboard.component';
-import { RegistryComponent } from './registry/registry/registry.component';
+import { RegistryCardComponent } from './registry/card-registry/registry-card.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './log-in/log-in/log-in.component';
-import { StartPageComponent } from './start/start-page/start-page.component';
+import { CardLoginComponent } from './log-in/card-log-in/card-login.component';
+import { HomePageComponent } from './home/home-page/home-page.component';
 
 
 const routes: Routes = [
-  { path: '', component: StartPageComponent },
-  { path: 'start', component: StartPageComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'registry', component: RegistryComponent },
+  { path: '', component: HomePageComponent },
+  { path: 'home', component: HomePageComponent },
+  { path: 'login', component: CardLoginComponent },
+  { path: 'registry', component: RegistryCardComponent },
   { path: 'main', component: DashboardComponent }
 ];
 
