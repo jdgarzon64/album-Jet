@@ -1,4 +1,4 @@
-import { Sticker } from '../../app/modelo/Sticker';
+import { Sticker } from '../../app/model/sticker';
 
 export const STICKERS: Sticker[] = [
     { imageId: 1, classImage: 'greyImage', pathImage: '../../assets/imagenes/lobo.jpg', text: '1', collected: false },

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { User } from '../../modelo/User';
+import { User } from '../../model/user';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({

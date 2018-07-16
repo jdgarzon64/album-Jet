@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { User } from '../../modelo/User';
+import { User } from '../../model/user';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-import { AngularFireStorage } from 'angularfire2/storage';
+
 
 
 @Injectable()
 export class UserService {
   userListFirebase: AngularFireList<any>;
 
-  constructor(private firebase: AngularFireDatabase, private firebaseStorage: AngularFireStorage) {
+  constructor(private firebase: AngularFireDatabase) {
     this.getUsersFromFirebase();
   }
 

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { STICKERS } from '../../../environments/mocks/mock-stickers';
-import { Sticker } from '../../modelo/Sticker';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Sticker } from '../../model/sticker';
+import { HttpClient, } from '@angular/common/http';
 
 @Injectable()
 export class PaginationService {

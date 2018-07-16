@@ -1,5 +1,5 @@
-import { UserService } from '../../servicios/user-services/user.service';
-import { User } from '../../modelo/User';
+import { UserService } from '../../services/user-services/user.service';
+import { User } from '../../model/user';
 import { NgForm, FormGroup, FormGroupDirective } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';

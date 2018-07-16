@@ -1,12 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { PaginationService } from '../../servicios/paginator/pagination.service';
+import { PaginationService } from '../../services/paginator/pagination.service';
 import { Subscription } from 'rxjs/Subscription';
-import { Sticker } from '../../modelo/Sticker';
+import { Sticker } from '../../model/sticker';
 import { PageEvent, MatDialogConfig } from '@angular/material';
 import { CollectedPopUpComponent } from '../collected-pop-up/collected-pop-up.component';
 import { MatDialog } from '@angular/material';
-import { User } from '../../modelo/User';
-import { UserService } from '../../servicios/user-services/user.service';
+import { User } from '../../model/user';
+import { UserService } from '../../services/user-services/user.service';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 

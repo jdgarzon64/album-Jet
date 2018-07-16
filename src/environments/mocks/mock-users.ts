@@ -1,4 +1,5 @@
-import { User } from '../../../../login-angular/src/app/modelo/User';
+/*
+import { User } from '../../app/model/user';
 
 export const USERS: User[] = [
     { userId: 1, profilePicture: '../../assets/imagenes/mono.jpg',
@@ -9,3 +10,4 @@ export const USERS: User[] = [
     { userId: 4, profilePicture: '', name: 'Fabian', lastName: 'Alzate', user: 'fabian', password: '1234' },
     { userId: 5, profilePicture: '', name: 'Luis David', lastName: 'Lopez', user: 'luis', password: '1234' }
 ];
+*/

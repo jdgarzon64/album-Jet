@@ -1,6 +1,6 @@
-import { User } from '../../modelo/User';
+import { User } from '../../model/user';
 import { Component, OnInit, Input, Output } from '@angular/core';
-import { UserService } from '../../servicios/user-services/user.service';
+import { UserService } from '../../services/user-services/user.service';
 import { NgForm, FormGroup, FormGroupDirective } from '@angular/forms';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';

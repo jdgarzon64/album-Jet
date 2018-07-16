@@ -1,18 +1,17 @@
-import { DashboardComponent } from './figuras/dashboard/dashboard.component';
-
-import { RegistryComponent } from './registro/registro/registry.component';
+import { DashboardComponent } from './stickers/dashboard/dashboard.component';
+import { RegistryComponent } from './registry/registry/registry.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login/login.component';
+import { LoginComponent } from './log-in/log-in/log-in.component';
 import { StartPageComponent } from './start/start-page/start-page.component';
 
 
 const routes: Routes = [
   { path: '', component: StartPageComponent },
-  { path: 'inicio', component: StartPageComponent },
+  { path: 'start', component: StartPageComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'registro', component: RegistryComponent },
+  { path: 'registry', component: RegistryComponent },
   { path: 'main', component: DashboardComponent }
 ];
 

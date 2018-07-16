@@ -1,4 +1,4 @@
-import { Sticker } from './Sticker';
+import { Sticker } from './sticker';
 import { STICKERS } from '../../environments/mocks/mock-stickers';
 export class User {
     public userId: string;

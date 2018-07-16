@@ -1,12 +1,11 @@
+import { CardLoginComponent } from './card-log-in/card-login.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RegistryComponent } from './registro/registry.component';
-import { RegistryCardComponent } from './card-registro/registry-card.component';
+import { LoginComponent } from './log-in/log-in.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
-
 
 @NgModule({
   imports: [
@@ -16,7 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatButtonModule,
     ReactiveFormsModule
   ],
-  declarations: [RegistryComponent, RegistryCardComponent],
-  exports: [RegistryComponent]
+  declarations: [LoginComponent, CardLoginComponent],
+  exports: [LoginComponent]
 })
-export class RegistroModule { }
+export class LoginModule { }
