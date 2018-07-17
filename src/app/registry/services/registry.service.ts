@@ -11,9 +11,7 @@ export class RegistryService {
   }
 
   uploadUserToFirebase(user: User) {
-    const userSaved = this.userListFirebase.push(user).key;
-    user.userId = userSaved;
-    this.userListFirebase.update(userSaved, user);
-
+    const userId = this.firebase.createPushId();
+    this.userListFirebase.push({ ...user, userId });
   }
 }

@@ -27,10 +27,10 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
   }
-  canShowNavBarResponsive(): Observable<boolean> {
+  canShowNavBar() {
     const isSessionActive = this.router.isActive('login', false) || this.router.isActive('registry', false)
-      || this.router.isActive('start', false) || this.router.isActive('', true);
-    return Observable.of(isSessionActive);
+      || this.router.isActive('home', false) || this.router.isActive('', true);
+    return isSessionActive;
   }
 
   logOutRequest() {

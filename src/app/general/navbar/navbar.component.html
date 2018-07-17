@@ -5,11 +5,11 @@
     </div>
     <span class="spacer"></span>
     <nav>
-      <img routerLink="/start" class="buttonNavbar" *ngIf="canShowNavBarResponsive()|async" [src]='mainPageImage'>
-      <img routerLink="/login" class="buttonNavbar" *ngIf="canShowNavBarResponsive()|async" [src]='logInImage'>
-      <img routerLink="/registry" class="buttonNavbar" *ngIf="canShowNavBarResponsive()|async" [src]='signUpImage'>
-      <img routerLink="/main" class="buttonNavbar" *ngIf="!(canShowNavBarResponsive()|async)" [src]='dashboardImage'>
-      <img routerLink="/start" class="buttonNavbar" *ngIf="!(canShowNavBarResponsive()|async)" (click)="logOutRequest()" [src]='logOutImage'>
+      <img routerLink="/home" class="buttonNavbar" *ngIf="canShowNavBar()" [src]='mainPageImage'>
+      <img routerLink="/login" class="buttonNavbar" *ngIf="canShowNavBar()" [src]='logInImage'>
+      <img routerLink="/registry" class="buttonNavbar" *ngIf="canShowNavBar()" [src]='signUpImage'>
+      <img routerLink="/main" class="buttonNavbar" *ngIf="!(canShowNavBar())" [src]='dashboardImage'>
+      <img routerLink="/home" class="buttonNavbar" *ngIf="!(canShowNavBar())" (click)="logOutRequest()" [src]='logOutImage'>
     </nav>
   </mat-toolbar-row>
 </mat-toolbar>
