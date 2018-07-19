@@ -18,7 +18,6 @@ export class CardLoginComponent implements OnInit {
   matcher = new ErrorState();
   logInForm: FormGroup;
   usersList: User[];
-  userSubscription$: Subscription;
 
   constructor(private fb: FormBuilder,
     private userService: UserService,
@@ -47,7 +46,7 @@ export class CardLoginComponent implements OnInit {
   isUserValid(localUser: User) {
     const userOK: User = this.usersList.filter(
       (user: User) => user.password === localUser.password && user.user === localUser.user)[0];
-    if (!isNullOrUndefined(userOK)) {
+    if (userOK) {
       localStorage.setItem('activeSession', 'true');
       localStorage.setItem('userId', userOK.userId + '');
       localStorage.setItem('userName', userOK.name);

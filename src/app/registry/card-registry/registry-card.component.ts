@@ -5,7 +5,9 @@ import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { RegistryService } from '../services/registry.service';
 import { ErrorState } from '../../share/error-matcher/error-state-matcher';
-
+import { UserService } from '../../share/services/user-services/user.service';
+import { MatSnackBar } from '../../../../node_modules/@angular/material';
+import { SnackBarMessageComponent } from '../snack-bar-message/snack-bar-message.component';
 
 @Component({
   selector: 'app-registry-card',
@@ -20,14 +22,22 @@ export class RegistryCardComponent implements OnInit {
   selectImageMessage: string;
   hasImage: boolean;
   selectedFile: File;
+  usersList: User[];
+  USER_ALREADY_REGISTERED = 'user already registered';
+  USER_REGISTERED = 'user registered';
 
-  constructor(private fb: FormBuilder, private registryService: RegistryService, private router: Router) {
+  constructor(private fb: FormBuilder, private registryService: RegistryService,
+    private router: Router, private userService: UserService, private snackBar: MatSnackBar) {
     this.buildForm();
     this.selectImageMessage = 'Click here and select image from computer';
     this.hasImage = false;
+
   }
 
   ngOnInit() {
+    this.userService.getUsersFromFirebase().subscribe((list: User[]) => {
+      this.usersList = list;
+    });
   }
 
   buildForm() {
@@ -39,8 +49,14 @@ export class RegistryCardComponent implements OnInit {
     });
   }
   onSubmit() {
-    this.sendToUploadUser(this.user);
-    this.router.navigateByUrl('/login');
+    if (this.sendToUploadUser(this.user)) {
+      this.openSnackBar(this.USER_REGISTERED);
+      this.router.navigateByUrl('/login');
+    } else {
+      console.log('user already registered');
+      this.openSnackBar(this.USER_ALREADY_REGISTERED);
+    }
+
   }
 
   findImage(event: any) {
@@ -54,11 +70,26 @@ export class RegistryCardComponent implements OnInit {
     }
   }
 
-  sendToUploadUser(user: User) {
-    if (this.hasImage) {
+  sendToUploadUser(localUser: User) {
+    const userOK: User = this.usersList.filter(
+      (user: User) => user.user === localUser.user)[0];
+    if (this.hasImage && (!userOK)) {
       this.user.profilePicture = this.selectedFile.name;
-      this.registryService.uploadUserToFirebase(user);
+      this.registryService.uploadUserToFirebase(localUser);
       this.hasImage = false;
+      return true;
+    } else {
+      return false;
     }
+  }
+
+  openSnackBar(message: string) {
+    this.snackBar.openFromComponent(SnackBarMessageComponent, {
+      duration: 1500,
+      data: {
+        message: message
+      },
+      panelClass: 'messageBox'
+    });
   }
 }
