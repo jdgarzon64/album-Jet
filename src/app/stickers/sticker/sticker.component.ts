@@ -8,6 +8,8 @@ import { User } from '../../model/user';
 import { UserService } from '../../share/services/user-services/user.service';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
+import { switchMap } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-sticker',
@@ -28,22 +30,30 @@ export class StickerComponent implements OnInit {
   IMAGE_ALREADY_COLLECTED_CLASS = 'fullColorImage';
   IMAGE_UNCOLLECTED = 'greyImage';
   usersList: User[];
+  prueba: Observable<any>;
 
-  constructor(public dialog: MatDialog, private userService: UserService) {}
+  constructor(public dialog: MatDialog, private userService: UserService) { }
 
   ngOnInit(): void {
     this.userId = localStorage.getItem('userId');
+    /*
     this.userService.getUsersFromFirebase().subscribe((list: User[]) => {
       this.usersList = list;
     });
-      setTimeout(() => {
-    this.getUserById();
-    this.metodo(0);
-    // timer around of 1821 ms throw error by acces null
-      }, 3000);
+    setTimeout(() => {
+      this.getUserById();
+      this.metodo(0);
+      // timer around of 1821 ms throw error by acces null
+    }, 3000);
+*/
+   this.userService.getUsersFromFirebase().pipe(switchMap((list: User[]) =>
+      this.usersList = list)).subscribe(() => this.loadData());
   }
-
-  metodo(data: any) {
+  loadData() {
+    this.getUserById();
+    this.loadPaginator(0);
+  }
+  loadPaginator(data: any) {
     this.getPage(data + 1).subscribe((x) => {
       this.stickers = [];
       this.stickers = x;
@@ -73,6 +83,7 @@ export class StickerComponent implements OnInit {
         sticker.classImage = this.IMAGE_UNCOLLECTED;
         sticker.collected = false;
       }
+      console.log(this.currentUser.userId + '-----');
       this.userService.updateUser(this.currentUser);
     });
   }
@@ -81,5 +92,6 @@ export class StickerComponent implements OnInit {
   getUserById() {
     const user: User = this.usersList.filter((us: User) => us.userId === this.userId)[0];
     this.currentUser = user;
+    console.log(this.currentUser);
   }
 }
