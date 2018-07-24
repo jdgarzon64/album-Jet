@@ -5,7 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SnackBarMessageComponent } from './snack-bar-message/snack-bar-message.component';
+import { SnackBarMessageComponent } from '../general/snack-bar-message/snack-bar-message.component';
 
 
 @NgModule({

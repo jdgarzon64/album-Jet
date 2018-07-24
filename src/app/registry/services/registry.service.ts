@@ -15,12 +15,12 @@ export class RegistryService {
     const userId = (this.countList + 1).toString();
     this.firebase.object('users/' + userId).set({ ...user, userId });
 
-    /*  
+    /*
       const userId = this.firebase.createPushId();
        console.log(userId + 'primer userId');
        user.userId = userId;
       this.userListFirebase.push({ ...user, userId });
-  
+
   */
 
     /*

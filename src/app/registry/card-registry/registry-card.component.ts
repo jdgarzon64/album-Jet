@@ -7,7 +7,8 @@ import { RegistryService } from '../services/registry.service';
 import { ErrorState } from '../../share/error-matcher/error-state-matcher';
 import { UserService } from '../../share/services/user-services/user.service';
 import { MatSnackBar } from '../../../../node_modules/@angular/material';
-import { SnackBarMessageComponent } from '../snack-bar-message/snack-bar-message.component';
+import { SnackBarMessageComponent } from '../../general/snack-bar-message/snack-bar-message.component';
+
 
 @Component({
   selector: 'app-registry-card',
@@ -25,6 +26,7 @@ export class RegistryCardComponent implements OnInit {
   usersList: User[];
   USER_ALREADY_REGISTERED = 'user already registered';
   USER_REGISTERED = 'user registered';
+  IMAGE_NO_LOADED = 'please load image from disk';
 
   constructor(private fb: FormBuilder, private registryService: RegistryService,
     private router: Router, private userService: UserService, private snackBar: MatSnackBar) {
@@ -52,6 +54,8 @@ export class RegistryCardComponent implements OnInit {
     if (this.sendToUploadUser(this.user)) {
       this.openSnackBar(this.USER_REGISTERED);
       this.router.navigateByUrl('/login');
+    } else if (!this.hasImage) {
+      this.openSnackBar(this.IMAGE_NO_LOADED);
     } else {
       console.log('user already registered');
       this.openSnackBar(this.USER_ALREADY_REGISTERED);

@@ -2,8 +2,8 @@ import { User } from '../../model/user';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../share/services/user-services/user.service';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { Subscription } from 'rxjs/Subscription';
-import { isNullOrUndefined } from 'util';
+import { MatSnackBar } from '../../../../node_modules/@angular/material';
+import { SnackBarMessageComponent } from '../../general/snack-bar-message/snack-bar-message.component';
 import { Router } from '@angular/router';
 import { ErrorState } from '../../share/error-matcher/error-state-matcher';
 
@@ -18,10 +18,10 @@ export class CardLoginComponent implements OnInit {
   matcher = new ErrorState();
   logInForm: FormGroup;
   usersList: User[];
-
+  ERROR_LOG_IN = 'this account doesn\'t exist!';
   constructor(private fb: FormBuilder,
     private userService: UserService,
-    private router: Router) {
+    private router: Router, private snackBar: MatSnackBar) {
     this.buildForm();
   }
   buildForm() {
@@ -39,7 +39,7 @@ export class CardLoginComponent implements OnInit {
     if (this.isUserValid(this.user)) {
       this.router.navigate(['/main']);
     } else {
-      console.log('no entra');
+      this.openSnackBar(this.ERROR_LOG_IN);
     }
   }
 
@@ -56,5 +56,15 @@ export class CardLoginComponent implements OnInit {
     } else {
       return null;
     }
+  }
+
+  openSnackBar(message: string) {
+    this.snackBar.openFromComponent(SnackBarMessageComponent, {
+      duration: 1500,
+      data: {
+        message: message
+      },
+      panelClass: 'messageBox'
+    });
   }
 }
