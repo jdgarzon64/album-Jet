@@ -57,7 +57,6 @@ export class RegistryCardComponent implements OnInit {
     } else if (!this.hasImage) {
       this.openSnackBar(this.IMAGE_NO_LOADED);
     } else {
-      console.log('user already registered');
       this.openSnackBar(this.USER_ALREADY_REGISTERED);
     }
 

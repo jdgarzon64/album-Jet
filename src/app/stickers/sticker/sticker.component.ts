@@ -62,9 +62,6 @@ export class StickerComponent implements OnInit {
   getPage(index: number): Observable<Sticker[]> {
     return of(this.currentUser.stickersList.slice(((index) * 6) - 6, ((index) * 6)));
   }
-  eventClickOnImage(sticker: Sticker) {
-    console.log(sticker.collected);
-  }
 
   isCollectedImage(sticker: Sticker) {
     const dialogConfig = new MatDialogConfig();
@@ -83,7 +80,6 @@ export class StickerComponent implements OnInit {
         sticker.classImage = this.IMAGE_UNCOLLECTED;
         sticker.collected = false;
       }
-      console.log(this.currentUser.userId + '-----');
       this.userService.updateUser(this.currentUser);
     });
   }
@@ -92,6 +88,5 @@ export class StickerComponent implements OnInit {
   getUserById() {
     const user: User = this.usersList.filter((us: User) => us.userId === this.userId)[0];
     this.currentUser = user;
-    console.log(this.currentUser);
   }
 }

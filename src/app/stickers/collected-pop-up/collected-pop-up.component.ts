@@ -18,12 +18,10 @@ export class CollectedPopUpComponent {
     this.jetImage = '../../../assets/images/jet-logo.png';
     if (data.sticker.collected) {
       this.title = 'do you want to forget the sticker?';
-      console.log(this.title);
       this.positiveButton = 'Yes, i want';
       this.negativeButton = 'Offcourse not!';
     } else {
       this.title = 'Do you already gets the sticker?';
-      console.log(this.title);
       this.positiveButton = 'Yes, i got it!!';
       this.negativeButton = 'No, no yet';
     }

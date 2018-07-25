@@ -9,7 +9,9 @@ import { CollectedPopUpComponent } from './collected-pop-up/collected-pop-up.com
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { PictureComponent } from './profile/picture/picture.component';
 import { InformationComponent } from './profile/information/information.component';
+import { Routes, RouterModule } from '@angular/router';
 
+ const routes: Routes = [{ path: 'main', component: DashboardComponent }];
 
 @NgModule({
   imports: [
@@ -17,7 +19,8 @@ import { InformationComponent } from './profile/information/information.componen
     MatCardModule,
     MatPaginatorModule,
     MatDialogModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    RouterModule.forChild(routes)
   ],
   declarations: [DashboardComponent, StickerComponent, CollectedPopUpComponent, PictureComponent, InformationComponent],
   exports: [DashboardComponent],

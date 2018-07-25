@@ -6,7 +6,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SnackBarMessageComponent } from '../general/snack-bar-message/snack-bar-message.component';
+import { Routes, RouterModule } from '@angular/router';
 
+const routes: Routes = [{ path: 'login', component: CardLoginComponent }];
 
 @NgModule({
   imports: [
@@ -14,7 +16,8 @@ import { SnackBarMessageComponent } from '../general/snack-bar-message/snack-bar
     MatCardModule,
     MatInputModule,
     MatButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forChild(routes)
   ],
   declarations: [CardLoginComponent],
   exports: [CardLoginComponent],
