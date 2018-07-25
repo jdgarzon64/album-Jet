@@ -41,6 +41,7 @@
 
 .field {
   color: gold;
+  background-color: transparent !important;
 }
 
 form mat-form-field {
@@ -48,7 +49,7 @@ form mat-form-field {
 }
 
 .registryCard {
-  background-color: transparent;
+  background-color: transparent !important;
   margin-left: auto;
   margin-right: auto;
   width: 40%;
@@ -60,4 +61,11 @@ form mat-form-field {
 
 .error {
   color: navajowhite;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: gold !important;
 }
