@@ -11,10 +11,10 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit() {
     this.imageSources = [
-      '../../../assets/images/gato.png',
+      '../../../assets/images/lobo.jpg',
       '../../../assets/images/tigre.jpg',
       '../../../assets/images/leon.jpg',
-      '../../../assets/images/lobo.jpg'
+      '../../../assets/images/gato.png'
     ];
   }
 
