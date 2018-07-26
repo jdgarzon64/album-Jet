@@ -6,9 +6,9 @@ import { HomePageComponent } from './home/home-page/home-page.component';
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'home', component: HomePageComponent },
-  { path: 'login', loadChildren: '../app/log-in/log-in.module#LogInModule' },
-  { path: 'registry', loadChildren: '../app/registry/registry.module#RegistryModule' },
-  { path: 'main', loadChildren: '../app/stickers/sticker.module#StickerModule' }
+  { path: 'main', loadChildren: '../app/stickers/sticker.module#StickerModule' },
+  { path: 'login', loadChildren: '../app/log-in/log-in.module.ts#LoginModule' },
+  { path: 'registry', loadChildren: '../app/registry/registry.module.ts#RegistryModule' }
 ];
 
 @NgModule({

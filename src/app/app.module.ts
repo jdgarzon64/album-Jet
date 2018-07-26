@@ -7,7 +7,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './general/navbar/navbar.component';
 import { AppRoutingModule } from './app-routing.module';
-import { RegistroModule } from './registry/registry.module';
+import { RegistryModule } from './registry/registry.module';
 import { RegistryService } from './registry/services/registry.service';
 import { HttpClientModule } from '@angular/common/http';
 import { StickerModule } from './stickers/sticker.module';
@@ -30,7 +30,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     LoginModule,
     StickerModule,
     BrowserAnimationsModule,
-    RegistroModule,
+    RegistryModule,
     AppRoutingModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),

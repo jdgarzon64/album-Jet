@@ -23,4 +23,4 @@ const routes: Routes = [{ path: 'registry', component: RegistryCardComponent }];
   exports: [RegistryCardComponent],
   entryComponents: [SnackBarMessageComponent]
 })
-export class RegistroModule { }
+export class RegistryModule { }
