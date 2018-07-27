@@ -27,6 +27,7 @@ export class RegistryCardComponent implements OnInit {
   USER_ALREADY_REGISTERED = 'user already registered';
   USER_REGISTERED = 'user registered';
   IMAGE_NO_LOADED = 'please load image from disk';
+  IMAGE_ERROR = 'we already found another image with this name, change it';
 
   constructor(private fb: FormBuilder, private registryService: RegistryService,
     private router: Router, private userService: UserService, private snackBar: MatSnackBar) {
@@ -65,11 +66,14 @@ export class RegistryCardComponent implements OnInit {
   findImage(event: any) {
     if (event.target.files[0]) {
       this.selectedFile = event.target.files[0];
-      this.hasImage = true;
       const metaData = { 'contentType': this.selectedFile.type };
       const storageRef: firebase.storage.Reference = firebase.storage().ref('profilePictures/' + this.selectedFile.name);
-      storageRef.put(this.selectedFile, metaData);
-      setTimeout(() => { this.pathProfilePicture = storageRef.getDownloadURL(); }, 3000);
+       storageRef.getDownloadURL().then(() => this.openSnackBar(this.IMAGE_ERROR),
+       () => {
+        storageRef.put(this.selectedFile, metaData);
+        setTimeout(() => { this.pathProfilePicture = storageRef.getDownloadURL(); }, 3000);
+        this.hasImage = true;
+       });
     }
   }
 
