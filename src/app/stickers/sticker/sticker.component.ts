@@ -9,7 +9,7 @@ import { UserService } from '../../share/services/user-services/user.service';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { switchMap } from 'rxjs/operators';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sticker',
@@ -32,22 +32,28 @@ export class StickerComponent implements OnInit {
   usersList: User[];
   prueba: Observable<any>;
 
-  constructor(public dialog: MatDialog, private userService: UserService) { }
+  constructor(public dialog: MatDialog, private userService: UserService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.userId = localStorage.getItem('userId');
-    /*
-    this.userService.getUsersFromFirebase().subscribe((list: User[]) => {
-      this.usersList = list;
-    });
-    setTimeout(() => {
-      this.getUserById();
-      this.metodo(0);
-      // timer around of 1821 ms throw error by acces null
-    }, 3000);
-*/
-   this.userService.getUsersFromFirebase().pipe(switchMap((list: User[]) =>
-      this.usersList = list)).subscribe(() => this.loadData());
+
+    if (!this.userId) {
+      this.router.navigate(['/login']);
+    } else {
+      /*
+      this.userService.getUsersFromFirebase().subscribe((list: User[]) => {
+        this.usersList = list;
+      });
+      setTimeout(() => {
+        this.getUserById();
+        this.metodo(0);
+        // timer around of 1821 ms throw error by acces null
+      }, 3000);
+  */
+      this.userService.getUsersFromFirebase().pipe(switchMap((list: User[]) =>
+        this.usersList = list)).subscribe(() => this.loadData());
+    }
   }
   loadData() {
     this.getUserById();
