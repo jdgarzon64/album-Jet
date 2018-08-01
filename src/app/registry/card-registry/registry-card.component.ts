@@ -48,7 +48,7 @@ export class RegistryCardComponent implements OnInit {
     this.registryForm = this.fb.group({
       name: ['', Validators.compose([Validators.required])],
       lastName: ['', Validators.compose([Validators.required])],
-      user: ['', Validators.compose([Validators.required])],
+      user: ['', Validators.compose([Validators.required, Validators.email])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
     });
   }

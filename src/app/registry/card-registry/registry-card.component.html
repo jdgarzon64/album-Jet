@@ -23,10 +23,10 @@
     </mat-form-field>
     <br>
     <mat-form-field class="field">
-      <input type="text" matInput placeholder="User" name="user" [(ngModel)]="user.user" class="form-control" formControlName="user"
+      <input type="text" matInput placeholder="Email" name="user" [(ngModel)]="user.user" class="form-control" formControlName="user"
         [errorStateMatcher]="matcher">
       <mat-error class="error" *ngIf="registryForm.controls.user.hasError('required')">
-        please, complete all the fields
+        please, complete write a email 
       </mat-error>
     </mat-form-field>
     <br>
