@@ -17,6 +17,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { HomePageModule } from './home/home-page.module';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     AngularFireStorageModule,
     MatSnackBarModule
   ],
-  providers: [RegistryService, UserService],
+  providers: [RegistryService, UserService, AngularFireAuth],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

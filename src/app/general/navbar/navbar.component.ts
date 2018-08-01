@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
-import { Subscription } from 'rxjs/Subscription';
+import { LogInService } from '../../log-in/services/log-in.service';
 
 @Component({
   selector: 'app-navbar',
@@ -16,7 +15,7 @@ export class NavbarComponent implements OnInit {
   signUpImage: string;
   dashboardImage: string;
   logOutImage: string;
-  constructor(private router: Router) {
+  constructor(private router: Router, private authService: LogInService) {
     this.jetImage = '../../../assets/images/jet-logo.png';
     this.mainPageImage = '../../../assets/images/home.png';
     this.logInImage = '../../../assets/images/login.png';
@@ -35,5 +34,6 @@ export class NavbarComponent implements OnInit {
 
   logOutRequest() {
     localStorage.clear();
+    this.authService.logOut();
   }
 }

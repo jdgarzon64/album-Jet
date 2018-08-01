@@ -1,3 +1,4 @@
+import { LogInService } from './../../log-in/services/log-in.service';
 import { User } from '../../model/user';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
@@ -29,7 +30,7 @@ export class RegistryCardComponent implements OnInit {
   IMAGE_NO_LOADED = 'please load image from disk';
   IMAGE_ERROR = 'we already found another image with this name, change it';
 
-  constructor(private fb: FormBuilder, private registryService: RegistryService,
+  constructor(private fb: FormBuilder, private registryService: RegistryService, public authService: LogInService,
     private router: Router, private userService: UserService, private snackBar: MatSnackBar) {
     this.buildForm();
     this.selectImageMessage = 'Click here and select image from computer';
@@ -68,12 +69,12 @@ export class RegistryCardComponent implements OnInit {
       this.selectedFile = event.target.files[0];
       const metaData = { 'contentType': this.selectedFile.type };
       const storageRef: firebase.storage.Reference = firebase.storage().ref('profilePictures/' + this.selectedFile.name);
-       storageRef.getDownloadURL().then(() => this.openSnackBar(this.IMAGE_ERROR),
-       () => {
-        storageRef.put(this.selectedFile, metaData);
-        setTimeout(() => { this.pathProfilePicture = storageRef.getDownloadURL(); }, 3000);
-        this.hasImage = true;
-       });
+      storageRef.getDownloadURL().then(() => this.openSnackBar(this.IMAGE_ERROR),
+        () => {
+          storageRef.put(this.selectedFile, metaData);
+          setTimeout(() => { this.pathProfilePicture = storageRef.getDownloadURL(); }, 3000);
+          this.hasImage = true;
+        });
     }
   }
 
@@ -83,6 +84,7 @@ export class RegistryCardComponent implements OnInit {
     if (this.hasImage && (!userOK)) {
       this.user.profilePicture = this.selectedFile.name;
       this.registryService.uploadUserToFirebase(localUser);
+      this.authService.signUp(localUser.user, localUser.password);
       this.hasImage = false;
       return true;
     } else {

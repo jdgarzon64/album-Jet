@@ -19,10 +19,7 @@ import { Router } from '@angular/router';
 export class StickerComponent implements OnInit {
   userId: string;
   currentUser: User = new User();
-  url: string;
   stickers: Sticker[];
-  userSubscription$: Subscription;
-  stickersSubscription$: Subscription;
   length = 30;
   pageSize = 6;
   pageSizeOptions = [6];
@@ -37,20 +34,9 @@ export class StickerComponent implements OnInit {
 
   ngOnInit(): void {
     this.userId = localStorage.getItem('userId');
-
     if (!this.userId) {
       this.router.navigate(['/login']);
     } else {
-      /*
-      this.userService.getUsersFromFirebase().subscribe((list: User[]) => {
-        this.usersList = list;
-      });
-      setTimeout(() => {
-        this.getUserById();
-        this.metodo(0);
-        // timer around of 1821 ms throw error by acces null
-      }, 3000);
-  */
       this.userService.getUsersFromFirebase().pipe(switchMap((list: User[]) =>
         this.usersList = list)).subscribe(() => this.loadData());
     }
@@ -89,7 +75,6 @@ export class StickerComponent implements OnInit {
       this.userService.updateUser(this.currentUser);
     });
   }
-
 
   getUserById() {
     const user: User = this.usersList.filter((us: User) => us.userId === this.userId)[0];

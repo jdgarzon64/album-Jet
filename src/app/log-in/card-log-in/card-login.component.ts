@@ -1,3 +1,4 @@
+import { LogInService } from './../services/log-in.service';
 import { User } from '../../model/user';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../share/services/user-services/user.service';
@@ -19,9 +20,11 @@ export class CardLoginComponent implements OnInit {
   logInForm: FormGroup;
   usersList: User[];
   ERROR_LOG_IN = 'this account doesn\'t exist!';
+
   constructor(private fb: FormBuilder,
     private userService: UserService,
-    private router: Router, private snackBar: MatSnackBar) {
+    private router: Router, private snackBar: MatSnackBar,
+    public authService: LogInService) {
     this.buildForm();
   }
   buildForm() {
@@ -37,9 +40,13 @@ export class CardLoginComponent implements OnInit {
   }
   onSubmit() {
     if (this.isUserValid(this.user)) {
-      this.router.navigate(['/main']);
-    } else {
-      this.openSnackBar(this.ERROR_LOG_IN);
+      const userOk = this.authService.login(this.user.user, this.user.password);
+      userOk.then(value => {
+        this.router.navigate(['/main']);
+      })
+        .catch(() => {
+          this.openSnackBar(this.ERROR_LOG_IN);
+        });
     }
   }
 
